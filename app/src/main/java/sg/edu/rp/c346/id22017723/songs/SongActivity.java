@@ -20,8 +20,8 @@ public class SongActivity extends AppCompatActivity {
     ListView lv;
 
     ArrayList<Song> al;
-    ArrayAdapter<Song> adapter;
-
+//    ArrayAdapter<Song> adapter;
+    CustomAdapter adapter;
 
 
 
@@ -34,7 +34,8 @@ public class SongActivity extends AppCompatActivity {
         lv = findViewById(R.id.lv);
 
         al = new ArrayList<>();
-        adapter = new ArrayAdapter<>(SongActivity.this, android.R.layout.simple_list_item_1, al);
+        //adapter = new ArrayAdapter<>(SongActivity.this, android.R.layout.simple_list_item_1, al);
+        adapter = new CustomAdapter(this, R.layout.row, al);
         lv.setAdapter(adapter);
 
                 DBHelper db = new DBHelper(SongActivity.this);
@@ -42,8 +43,9 @@ public class SongActivity extends AppCompatActivity {
                 al = db.getSongs();
                 db.close();
 
-                ArrayAdapter adapter = new ArrayAdapter(SongActivity.this, android.R.layout.simple_list_item_1,al );
-                lv.setAdapter(adapter);
+                //ArrayAdapter adapter = new ArrayAdapter(SongActivity.this, android.R.layout.simple_list_item_1,al );
+        adapter = new CustomAdapter(this, R.layout.row, al);
+        lv.setAdapter(adapter);
 
 //            }
 //        });
@@ -56,7 +58,8 @@ public class SongActivity extends AppCompatActivity {
                 ArrayList<Song> data = db.getSongsByRating(5); // Retrieve songs with 5-star rating
                 db.close();
 
-                ArrayAdapter<Song> adapter = new ArrayAdapter<>(SongActivity.this, android.R.layout.simple_list_item_1, data);
+                //ArrayAdapter<Song> adapter = new ArrayAdapter<>(SongActivity.this, android.R.layout.simple_list_item_1, data);
+                adapter = new CustomAdapter(SongActivity.this, R.layout.row, data);
                 lv.setAdapter(adapter);
 
 
@@ -86,7 +89,8 @@ public class SongActivity extends AppCompatActivity {
         al = db.getSongs();
         db.close();
 
-        ArrayAdapter adapter = new ArrayAdapter(SongActivity.this, android.R.layout.simple_list_item_1,al );
+        //ArrayAdapter adapter = new ArrayAdapter(SongActivity.this, android.R.layout.simple_list_item_1,al );
+        adapter = new CustomAdapter(this, R.layout.row, al);
         lv.setAdapter(adapter);
     }
 
